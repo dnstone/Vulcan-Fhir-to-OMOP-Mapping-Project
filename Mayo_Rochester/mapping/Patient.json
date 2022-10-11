@@ -1,0 +1,35 @@
+{
+  "$vkg": {
+    "$table": "omop.person",
+    "$structuredefinition": "http://hl7.org/fhir/us/core/StructureDefinition-us-core-patient.json",
+    "$baseIRI": "http://example.org/",
+    "$idColumn": "person_id"
+  },
+  "resourceType": "Patient",
+  "identifier": {
+    "value": {
+      "$column": "person_id"
+    }
+  },
+  "name": {
+    "family": {
+      "$column": "fname"
+    },
+    "given": [
+      {
+        "$column": "name1"
+      },
+      {
+        "$column": "name2"
+      }
+    ]
+  },
+  "birthDate": {
+    "$column": "birth_datetime"
+  },
+  "gender": {
+    "$expression": "CASE WHEN \"gender_source_value\" LIKE 'M' or \"gender_source_value\" LIKE 'male' THEN 'male' ELSE 'female' END",
+    "$alias": "gender"
+  }
+}
+
